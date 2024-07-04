@@ -1,0 +1,5 @@
+ALTER TABLE autori CHANGE COLUMN cf codice_fiscale Numeric(16)
+ALTER TABLE autori ADD COLUMN indirizzo VARCHAR(40)
+ALTER TABLE autori ADD COLUMN cap Numeric(5)
+ALTER TABLE autori CHANGE COLUMN nome nome VARCHAR(20) NOT NULL;
+ALTER TABLE autori CHANGE COLUMN cognome cognome VARCHAR(20) NOT NULL;

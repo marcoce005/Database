@@ -1,0 +1,6 @@
+ALTER TABLE docenti CHANGE COLUMN abilitazione classe_concorso Boolean;
+ALTER TABLE docenti CHANGE COLUMN cf codice_fiscle Numeric(16);
+ALTER TABLE docenti ADD COLUMN ruolo Boolean;
+ALTER TABLE docenti DROP COLUMN citta;
+ALTER TABLE docenti DROP COLUMN telefono;
+ALTER TABLE docenti CHANGE COLUMN classe_concorso classe_concorso Boolean NOT NULL;

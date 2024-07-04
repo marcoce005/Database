@@ -1,0 +1,13 @@
+					OPERATORI AGGREGATIVI
+
+Le operazioni di aggregazione consentono di raggruppare le tuple per effettuare calcoli
+specifici quali. 
+
+ - AVG(nome_campo) --> media aritmetica
+ - COUNT(espressione) --> conta le righe
+ - MAX(espressione) --> valore massimo
+ - MIN(espressione) --> valore minimo
+ - SUM(campo numerico) --> somma totale
+ - STDDEV(campo numerico) --> calcola la deviazione standard. 
+ - GRUOP BY(campi da raggruppare) --> ragrupppa i valori elencati. 
+ - HAVING condizione --> considera solo le tuple che soddisfano la condizione. 

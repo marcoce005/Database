@@ -1,0 +1,11 @@
+CREATE DATABASE biblioteca;
+
+CREATE TABLE biblioteca.libri(
+  	isbn VARCHAR(13) PRIMARY KEY,
+    titolo VARCHAR(30),
+    autore VARCHAR(20),
+    argomento TEXT,
+    editore VARCHAR(30),
+    anno NUMERIC(4),
+    edizione VARCHAR(30)
+);

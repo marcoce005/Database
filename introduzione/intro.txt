@@ -1,0 +1,84 @@
+ 								DATABASE
+
+E' una o più tabella per la memorizzazione delle info. 
+Ogni ENTRY / RECORD hanno per forza un ID / OPK Ordinary Primary Key. 
+
+QUERY == richiesta al database 
+
+Il rapporto può essere 1:N, M:N ovvero può avere solo un relazione o M relazioni. 
+
+Sistema INFORMATIVO == raccoglie i dati 
+Sistema INFORMATICO == gli organizza in maniera digitale
+
+DBMS == Data Base Menagment System
+Caratteristiche: 
+	- Persistenza dei dati
+	- Affidabilità
+	- Privacy
+	- Efficenza
+	- Efficacia
+
+Per creare un DB si parte facendo il modello concettuale e il modello logico. 
+																							|											|
+																							|											|
+																							|								come i dati sono strutturati e organizzati
+																							|								all'interno del DB + si tiene conto delle specifiche 
+																							|								tecniche del DBMS utilizzato							
+																							|
+																							|
+																		rapperesentazione (astratta) ad alto
+																		livello [diagrammi entità-relazione ER]
+
+
+
+								MODELLO ENTITA' RELAZIONI [ER] == Entity-Relationship
+
+basato sull’individuazione e definizione delle entità di interesse e delle associazioni (relazioni) esistenti tra di esse.
+
+	- Entity --> sono gli elementi raggruppati in un classe (si raffigura con un RETTANGOLO)
+	- Istanza (occorenza) --> +/- oggetto della classe
+	- Associazioni (relazioni) --> legami logici tra le entità (si raffigura con un ROMBO)
+	- Attributi --> +/- attributi della classe, informazioni dell'entità (rappresentati da PUNTI)
+	- Chiave Primaria --> 1 o più attributi che indentificano l'istanza
+	- Cardinalità --> tipo di relazione tra tra istanze di entità diverse (+/- righe di una tabella)
+			-- 1:1 un oggetto ha solo una relazione
+			-- 1:N un oggetto ha N instanze
+			-- N:N molti oggetti hanno molte istanze
+
+
+Dominio == valori accettabili dal DB -esempio: l'età deve essere compresa tra 0 e 100 anni non di più
+						o i voti sono da 2 a 10.
+
+Le Chiavi Esterne servono per linkare due tabella +/- ereditarietà. 
+
+
+Le TABELLE: 
+	righe --> istanze (record) 
+	colonne --> attributi 
+
+
+L'IDENTIFICATIVO DEI RECORD: 
+	1 o più campi che identificano l'istanza "ID" è sempre UNIVOCO.
+
+	| ID | Nome  | Cognome | Età |
+	------------------------------
+	| 1  | Mario | Rossi 	 | 30  |
+	| 2  | Luigi | Verdi 	 | 35  |
+	| 3  | Marco | Bianchi | 25  |
+
+	Chiave Esterna (foreign key) --> fa riferimento alla chive di un'altra tabella [chiave di un'altra entità]
+	stabilisce un collegamento tra 2 entità. 
+
+
+GRADO: 
+	numero di colonne in una tabella, numero di attributi. 
+
+
+In caso di dati ridondanti si effettua la NORMALIZZAZIONE: 
+	- riduzione in 1° forma normale [1 Normal Form - 1NF]
+	- riduzione in 2° forma normale [2 Normal Form - 2NF]
+	- riduzione in 3° forma normale [3 Normal Form - 3NF]
+
+Decompone la tabella in più tabelle rispettando:
+	- evitare perdita dei dati (deve garantire la ricostruzione della tabella originale)
+	- conservare le dipendenze 

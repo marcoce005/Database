@@ -1,0 +1,17 @@
+CREATE DATABASE trenitalia;
+
+CREATE TABLE trenitalia.treno (
+	numero Integer NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    giorno DATE NOT NULL,
+    ora DATETIME NOT NULL,
+    destinazione VARCHAR(30) NOT NULL,
+    categoria VARCHAR(30) NOT NULL,
+    UNIQUE(ora, destinazione, categoria)
+);
+
+CREATE TABLE trenitalia.fermate (
+    treno Integer NOT NULL PRIMARY KEY,
+    stazione VARCHAR(30) NOT NULL,
+    ora DATETIME NOT NULL, 
+    FOREIGN KEY(treno) REFERENCES trenitalia.treno(numero)
+);

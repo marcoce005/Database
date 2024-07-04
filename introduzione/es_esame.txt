@@ -1,0 +1,39 @@
+ESAME: 
+			| voto |
+			--------
+			| 27 	 |
+			| 30   |
+			| 18   |
+
+
+
+TEMPO: 							(1, N)
+			| data    |
+			-----------
+			| 12/3/22 |
+			| 3/4/23  |
+			| 1/9/21  |
+
+
+STUDENTE:						(0, N)
+				| matricola |   nome   |   cognome  | media | crediti |
+				-------------------------------------------------------
+				| 56789     | marco    |	cellini   | 28    | 16 			|
+				| 87673			| marco		 | 	transo 		| 19 		| 5				|
+				| 98724			| gino 		 | 	peluso		| 20 		| 6				|
+
+
+CORSO: 							(0, N)
+			| codcorso | 	 nome 	| crediti |
+			---------------------------------
+			| M78234   | paolo		| 7 			|
+			| V78942	 | pippo		| 10			|
+			| D87654	 | pluto 		| 5				|
+
+
+DOCENTE:						(0, N)
+			| coddocente | dipartimento | 	nome 	| cognome |
+			-------------------------------------------------
+			| D5678			 | informatica  | gino 		| pluto		|
+			| k2345			 | lettere			| pippo		| gianni	|
+			| g2678			 | meccanica 		| lillo		| lilli		|

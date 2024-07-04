@@ -1,0 +1,7 @@
+Avviare XAMPP
+
+	sudo /opt/lampp/xampp start
+
+Terminare XAMPP
+
+	sudo /opt/lampp/lampp stop

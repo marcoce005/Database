@@ -1,0 +1,6 @@
+ALTER TABLE alunni CHANGE COLUMN cf codice_fiscale Numeric(16);
+ALTER TABLE alunni CHANGE COLUMN anno data_nascita DATE;
+ALTER TABLE alunni ADD COLUMN corso VARCHAR(20);
+ALTER TABLE alunni ADD COLUMN sezione VARCHAR(5);
+ALTER TABLE alunni CHANGE COLUMN corso indirizzo VARCHAR(20);
+ALTER TABLE alunni DROP COLUMN telefono;

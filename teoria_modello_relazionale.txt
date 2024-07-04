@@ -1,0 +1,130 @@
+			MODELLO RELAZIONALE  --> usa il concetto di relazione matematica
+
+Si eseguono operazioni:
+	- di BASE --> selezione, proiezione, prodotto (prodotto cartesiano/scalare), divisione
+	- DERIVATE --> Intersezione	e	Congiunzione
+							|
+							|
+						Join:
+						- left join
+						- right join
+						- natural join
+
+Linguaggi d'interrogazione sono utilizzati per interrogare e manipolare dati all'interno di database [SQL].
+
+ - algebra relazione --> linguaggio procedurale a notazione algebrica con 5 operatori per le query
+ - calcolo relazionale --> notazione logica per fare delle domande al DB, return == record/righe/tuple
+
+Es.
+D1 = {a, b}		//dominio 1
+D2 = {x, y, z}		// dominio 2
+
+Prodotto Cartesiano == D1 * D2 --> (a, b)*(x, y, x)	// come in mate
+
+Una relazione su n domini a n gradi [questo caso grado 2].
+Il numero di n-tuple indica la CARDINALITA'della relazione [questo caso cardinalità == 6]
+							|
+							|
+					sottoinsieme del prodotto cartesiano
+					compostato da n-tuple ordinate e distinte 
+							tra loro. 
+
+. differenza insiemistica == tuple presenti nella relazione 1 ma non nella relazione 2
+
+Selezine/Proiezione == operazione unaria (lavora solo su una relazione)
+		|
+		|
+	seleziona colonne
+	specifiche
+
+Unione/Intersezione/Differenza == operazione binaria (lavora su 2 relazioni)
+		|
+		|
+	roba uguale
+	nei 2 domini
+
+
+
+ - SELEZIONE		σ [sigma]	--> sottoinsieme di tuple
+
+<nome attributo> <operatore di confronto> <valore costante> -----
+								|
+	σ <condizione selezione> (R)				|
+								|
+								|--> Π titolo, anno (σ autore = "ciro" (libri))
+ - PROIEZIONE		Π [pi]	--> sottoinsieme di attributi	|
+								|
+<nome attributo> o <attributo>, <attributo>, ecc...	   -----|
+
+	Π <lista attributi> (R)
+	
+	Seleziona una/più colonne
+
+
+ - RIDENOMINAZIONE	ρ [Rho]
+
+	ρ nuovoNome <-- nomeVecchio(relazione)
+
+
+ - UNIONE		U
+
+	<relazione> U <relaizone>
+
+	Restituisce tutte le tuple presenti nelle 2 relazioni, non mette ripetizioni solo dati unici. 
+
+
+ - INTERSEZIONE		∩
+
+	<relazione> ∩ <relazione>
+
+	sottoinsieme di tuple presenti in entrambe le relazioni. 
+
+
+ - DIFFERENZA		-
+
+	<relazione1> - <relazione2>
+	
+	sottoinsieme di tuple della 1 relazione ma che non ci sono nella 2.
+
+	opposto ->> <relazione2> - <relazione2>
+
+
+ - PRODOTTO CARTESIANO	X	[Cross Join]
+
+	<relazione> X <relazione>
+
+	restituisce n * m tuple. 
+
+	prodotto cartesiano + selezione == Join	
+
+
+ - Congiunzione o JOIN	 ⋈
+
+	R ⋈ <condizione di join> S
+
+	combina in un unica tabella le tuple collegate logicamente tramite attributo comune. 
+
+	Equi Join --> può avere delle robe ripetute
+	Natural join --> non ha ripetizioni
+
+ - LEFT Join	[conserva le righe dall tabella di sinistra]
+
+	left = ⋈ <condizione di join> R
+
+	la relazione left rimane invariata vengono aggiunti solo i dati
+	della relazione R [se non presenti per tutti gli ID si mette NULL] 
+
+
+- RIGHT Join	[conserva le righe della tabella di destra]
+
+        right = ⋈ <condizione di join> S
+
+        la relazione right rimane invariata viengono aggiunti solo i dati
+        della relazione S [se non presenti per tutti gli ID si mette NULL]
+
+
+ - FULL Join	[conserva tutte le righe delle 2 relazioni]
+	
+	R = ⋈ = <condizione di join> S
+
+	unione del left e right join [NULL se non c'e' il campo]

@@ -1,0 +1,89 @@
+TEORIA DATABASE
+
+- Introduzione
+	Sono un insieme di tabelle che contengono tutte le info relative ad un dato.
+								|
+								|
+								|
+						Gestito dal DBMS [Database Management System]
+			(gestisce  interamente i dati e il modo in cui vengono fisicamente archiviati)
+
+	DBMS caratteristiche fondamentali:
+		- gestire Grandi quantia' di DATI
+		- garantire la condivisione
+		- garantire la persistenza (i dati devono durare nel tempo)
+		- garantire l'affidabilita' delle operazioni [transazioni]
+
+				tipi di DataBase
+				|		|
+				|		|
+			open source		commerciale
+			MySQL			MS Access
+
+	DataBase relazionali SQL [MySQL]  e non NOSQL [Json]
+
+
+	Le informazioni vengono gestite dal SISTEMA INFORMATIVO
+			(insieme di strumenti automatici per la gestione dei dati)
+						|
+						|
+			sotto sistema --> SISTEMA INFORMATICO [EDP Electronic Data Processing]
+				(gestione automatica delle info digital data)
+
+
+	I DataBase considerano solo i DATI (no applicazioni)
+
+	Problemi Archivio Tradizionale:
+	- dati ripetuti
+	- inconsistenza/incongruenza tra le varie versioni dei dati
+	- scarsa flessibilità
+	- elaborazione manuale
+
+	Linguaggi di programmazione per la gestione di DataBase SQL [Structured Query Language]
+									|
+									|
+							per la creazione, manipolazione dei dati
+							CREATE, UPDATE, DELETE ...
+
+	DDL [Data Definition Language]
+			|
+			|
+	definiscono la struttura del DB
+	(non modifica i dati)
+
+
+
+	DATABASE --> insieme di TABELLE --> insieme di RECORD. 
+
+
+	Caratteristiche del DBMS [ACID]:
+	- Atomicità [Atomicity]  --> l'operazione viene svolta totalmente o non viene svolta per niente 
+					(basta solo un errore per mandare tutto a puttane)
+	- Consistenza [Consistency preservaion]  --> il DB deve rimanere consistente anche dopo una Query
+							le transazione non devono violare le regole del DB
+	- Isolazione [Isolation]  --> impossibile visionare risultati di operazioni intermedie
+	- Durabilità/persistenza [Durability] --> terminata la transazione i risultati devono essere permanenti
+
+	Nel caso ci fossero 2 persone che voglio lavorare sulla stessa tabella il DBMS attiva il LOCK ovvero
+	blocca uno dei due.
+
+	Il mancato successo della transazione riporta allo stato stabile precedente il DB == ROLLBACK. 
+
+
+
+ - SICUREZZA
+	gestire il controllo degli accessi con meccanismi di autorizzazione
+	in modo tale da incapsulare i singoli processi e gestire al meglio chi accede a cosa.
+
+
+	
+  - Architettura standard a 3 livelli ANSI/SPARC
+	
+	Schema Esterno --> descrizione di una porzione del del DB ("viste" parziali)
+	
+	Schema Logico --> descrizione dell'intero DB nel modello logico adottato dal DBMS
+
+	Schema Interno/Fisico --> rappresentazione dello schema logico per mezzo di strutture
+				fisiche di memorizzazione
+
+	 

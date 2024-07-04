@@ -1,0 +1,19 @@
+CREATE DATABASE azienda;
+
+CREATE TABLE azienda.reparto(
+	ID_reparto Integer AUTO_INCREMENT PRIMARY KEY,
+    nome_reparto VARCHAR(20),
+    cod_responsabile Integer
+);
+
+CREATE TABLE azienda.dipendenti(
+    ID_dipendente INTEGER AUTO_INCREMENT PRIMARY KEY,
+    cognome VARCHAR(20),
+    nome VARCHAR(20),
+    data_nascita DATE,
+    cap NUMERIC(5),
+    citta VARCHAR(20),
+    anzianita INTEGER,
+    id_reparto INTEGER,
+    FOREIGN KEY(id_reparto) REFERENCES azienda.reparto(ID_reparto)
+);

@@ -1,0 +1,9 @@
+CREATE DATABASE es1;
+
+CREATE TABLE es1.autori(
+	codice int PRIMARY KEY,
+    cf VARCHAR(16),
+    cognome VARCHAR(20),
+    nome VARCHAR(20),
+    citta VARCHAR(20)
+);

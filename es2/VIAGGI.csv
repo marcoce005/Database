@@ -1,0 +1,6 @@
+"ID","Type","N_passeggeri","QTA_merci"
+"1234","Biplano","100","69"
+"ID","City","Nazione","N_piste"
+"123","Malpensa","Italia","4"
+"ID","ID_destinazione","ID_partenza","Compagnia","Type_aereo","Ora_arrivo","Ora_partenza","ID_aereo"
+"13","123","123","Ciro airlines","737","2015-03-02","2015-03-02","1234"

@@ -1,0 +1,75 @@
+MIN() and MAX()
+
+	- SELECT MIN(column_name)
+		FROM table_name
+		WHERE condition;
+
+	- SELECT MIN(Prezzo)
+	 	FROM Prodotti;
+	
+	- SELECT MAX(column_name)
+		FROM table_name
+		WHERE condition;
+
+	- SELECT MAX(Prezzo)
+		FROM Prodotti;
+
+
+COUNT()
+
+	- SELECT COUNT(column_name)
+		FROM table_name
+		WHERE condition;
+
+
+AVG() 		La funzione restituisce il valore medio di una colonna numerica.
+
+	-	SELECT AVG(column_name)
+		FROM table_name
+		WHERE condition;
+
+
+SUM() 		La funzione restituisce la somma totale di una colonna numerica.
+
+	- SELECT SUM(column_name)
+		FROM table_name
+		WHERE condition;
+
+DISTINCT()		restituisce i duplicati nella tabella
+
+	- SELECT DISTINCT(first_name)
+		FROM table_name
+		WHERE 1;
+
+JOIN()		combina le righe di due o più tabelle in base ad una collonna comune tra di esse
+
+	1. (INNER) JOIN => Z : restituisce record con valori corrispondenti in entrambe le tabelle
+
+	2. LEFT (OUTER) JOIN => A+Z : restituisce tutti i record della tabella di sinistra e i record
+																corrispondenti della tabella di destra
+	
+	3. RIGHT (OUTER) JOIN => B+Z : restituisce tutti i record della tabella di destra e i record
+																	 corrispondenti della tabella di sinistra
+	
+	4. FULL (OUTER) JOIN => A+Z+B : restituisce tutti i record quando è presente una
+																	corrispondenza nella tabella sinistra o destra
+
+			A					Z				B
+	_____________________________
+	|						|	c	|						|
+	|						|	o	|						|
+	|						|	m	|						|
+	|						|	u	|						|
+	|						|	n	|						|
+	|___________|_i_|___________|
+
+
+	es.
+			SELECT
+		  	  DISTINCT(`Testo`)
+			FROM
+		    	`Testo`
+			JOIN
+					`user_details`
+			WHERE
+			    ID = 5;

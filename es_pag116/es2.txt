@@ -1,0 +1,6 @@
+ALTER TABLE libri CHANGE COLUMN anno anno_pubblicazione Integer
+ALTER TABLE libri ADD COLUMN cognome VARCHAR(40);
+ALTER TABLE libri ADD COLUMN nome VARCHAR(40);
+ALTER TABLE libri DROP COLUMN autore;
+ALTER TABLE libri CHANGE COLUMN cognome autore_cognome VARCHAR(20);
+ALTER TABLE libri CHANGE COLUMN nome autore_nome VARCHAR(20);

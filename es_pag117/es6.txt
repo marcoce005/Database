@@ -1,0 +1,295 @@
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    0,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    1,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    2,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    3,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    4,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    5,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    6,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    7,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    8,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+
+INSERT INTO `disco`(
+    `nr_catalogo`,
+    `artista`,
+    `titolo`,
+    `atichetta`,
+    `anno`,
+    `paese`,
+    `formato`,
+    `condizioni_disco`,
+    `condizioni_cover`,
+    `prezzo_minimo`,
+    `prezzo_massimo`,
+    `prezzo_nuovo`
+)
+VALUES(
+    9,
+    'ciro',
+    'napoli è bella',
+    'Sony',
+    CURRENT_TIMESTAMP,
+    'Turkmenistan',
+    33,
+    'nu schifu',
+    'nu schifu',
+    10,
+    1000,
+    500
+); 
+UPDATE disco SET prezzo_minimo = 10 WHERE prezzo_minimo = NULL
+DELETE FROM disco WHERE prezzo_minimo > prezzo_massimo;
+UPDATE disco SET prezzo_nuovo = prezzo_nuovo +  ((prezzo_nuovo/100)*10) WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(anno) >= 10;
+UPDATE disco SET prezzo_nuovo = prezzo_nuovo - ((prezzo_nuovo/100)*5) WHERE YEAR(CURRENT_TIMESTAMP) = YEAR(anno);
+UPDATE disco SET prezzo_nuovo = prezzo_nuovo + ((prezzo_nuovo/100)*10) WHERE condizioni_disco = 'mint' AND condizioni_cover = 'mint';
+DELETE FROM disco WHERE formato = 78;

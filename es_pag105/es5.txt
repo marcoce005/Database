@@ -1,0 +1,29 @@
+CREATE DATABASE azienda2;
+
+CREATE TABLE azienda2.clienti(
+	ID_cliente Integer AUTO_INCREMENT PRIMARY KEY,
+    cognome VARCHAR(20),
+    nome VARCHAR(20),
+    citta VARCHAR(30),
+    sconto Integer CHECK(sconto > 0 AND sconto < 100)
+);
+
+CREATE TABLE azienda2.agenti(
+	ID_agente Integer AUTO_INCREMENT PRIMARY KEY,
+    cognome VARCHAR(20),
+    nome VARCHAR(20),
+    zona Integer,
+    supervisore VARCHAR(20),
+    commissione Integer CHECK(commissione > 0 AND commissione < 100)
+);
+
+CREATE TABLE azienda2.ordini(
+	num_ordine Integer AUTO_INCREMENT PRIMARY KEY,
+    id_cliente Integer,
+    id_agente Integer,
+    info VARCHAR(50),
+    prodotto VARCHAR(20),
+    importo Integer,
+    FOREIGN KEY(id_cliente) REFERENCES azienda2.clienti(ID_cliente),
+    FOREIGN KEY(id_agente) REFERENCES azienda2.agenti(ID_agente)
+);

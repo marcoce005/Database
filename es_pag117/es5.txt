@@ -1,0 +1,40 @@
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0000, 0987655432123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0001, 098765432123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0002, 0987654352123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0003, 0987654352123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0004, 0987654325123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0005, 0987654324123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0006, 0987654321234563, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+INSERT 
+INTO persona(nr_tessera, cf, cognome, nome, anno, patologia, esenzione, allergia)
+VALUES(0007, 098765432123456, "esposito", "ciro", CURRENT_TIMESTAMP, 789, 987);
+
+
+DELETE
+
+
+FROM persona
+WHERE esenzione = 'E48';
+UPDATE persona SET nome = UPPER(nome), cognome = UPPER(cognome), cf = UPPER(cf);
+UPDATE persona SET esenzione = per età WHERE YEAR(CURRENT_TIMESTAMP) - YEAR(anno) > 70;

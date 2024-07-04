@@ -1,0 +1,73 @@
+			VINCOLI DI INTEGRITA' INTRA e INTER RELAZIONALI
+			|
+			|
+Insieme di regole che cercano di evitare l'inserimento di dati errati o che causano incosistenza. 
+
+
+Intrarelazionale --> vincoli su singoli attributi della tabella su una sola relazione del DB. 
+Interrelazionale --> vincoli su attributi che coinvolgono più relazioni. 
+
+
+Validazione degli attributi:
+	- in fase di caricamento / aggiornamento
+	- in fase di interrogazione
+	- periodicamente
+
+
+Intrarelazionale:
+ - Vincoli STATICI
+
+	il dato viene controllato nel momento dell'inserimento e/o nel momento di modifica:
+
+		. vincoli di correttezza - controllo qualita'
+		. presenza del valore
+		. vincolo sul valore - il valore deve essere diverso da altri attributi
+
+ - Vincoli DINAMICI
+
+	controllo del dato periodicamente
+	es.
+		prodotto che scade
+		novita' di n giorni ecc...
+
+
+Interrelazionale:
+	
+ - Validazione Chiavi Esterne
+	
+	e' necessario che i valori delle chiavi esterne siano allineati con quelli della tabella 
+	dove sono chiavi primarie --> integrita' referenziale interrelazionale. 
+
+
+ - Regole di INSERZIONE / MODIFICA
+
+	1. inserzione dipendente: consente l'inserimento di un'istanza nell'entita' figlio
+				solo se la chiave padre esiste gia'. 
+
+	2. inserzione automatica: permette sempre l'inserimento dell'istanza figlio, se nel padre
+				non e' presente viene creata automaticamente [con attributi a NULL tranne fk]. 
+
+	3. inserzione nulla: inserisce l'instaza figlio, se non c'e' l'istanza padre, si mette a NULL
+					la chiave esterna (fk) del figlio. 
+
+	4. inserzione default: inserisce l'istanza figlio, se non c'e' l'istanza del padre, la chiave 
+					esterna del figlio prende un valore di default. 
+
+
+Operazione di Aggiornamento:
+	cancellazine tuple
+	modifica di un attributo
+
+
+
+- Regole di Cancellazione
+
+	1. cancellazione con restrizione: cancella solo se non ci sono istanze dell'entita' figlio
+
+	2. cancellazione a cascata: cancella sempre l'istanza in padre e cancella le istanze in figlio corrispondente
+
+	3. cancellazione nulla: cancella sempre l'istanze in padre, in figlio la chiave esterna sono messe a NULL
+
+	4. cancellazione di default: cancella sempre l'istanza un padre, in figlio la chiave esterna viene messa a valore di default 
+	
+	5. nessun effetto: cancella sempre ma non fa nessun controllo. 
