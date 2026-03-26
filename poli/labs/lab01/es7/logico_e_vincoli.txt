@@ -1,0 +1,28 @@
+CLIENTE(ID, telefono*, type, nome*, cognome*, p_IVA*)
+
+COMMESSO(ID, nome)
+
+LIBRO(ISBN, titolo, n_pagine, prezzo)
+
+AUTORE(ID, nome, cognome)
+
+
+ACQUISTA(ID_cliente, ID_commesso, ISBN)
+
+SCRITTO(ISBN, ID_autore)
+
+
+
+Vincoli di integrità referenziale
+
+
+ACQUISTA(ID_cliente) references CLIENTE(ID)
+
+ACQUISTA(ID_commesso) references COMMESSO(ID)
+
+ACQUISTA(ISBN references LIBRO(ISBN)
+
+
+SCRITTO(ISBN) references LIBRO(ISBN)
+
+SCRITTO(ID_autore) references AUTORE(ID)
