@@ -1,0 +1,33 @@
+<h3>Relational logical schema</h3>IMPIANTO (<u  style="text-decoration: underline;">ID</u>, nome, capienza_max, indirizzo_via, indirizzo_n_civico, indirizzo_CAP)<br><br>
+MEMBRO_PERSONALE (<u  style="text-decoration: underline;">ID</u>, nome, cognome, data_assunzione, Type)<br><br>
+VIDEO_CORSO (<u  style="text-decoration: underline;">ID</u>, nome, durata)<br><br>
+PRODOTTO (<u  style="text-decoration: underline;">ID</u>, nome, costo_unitario, marchio)<br><br>
+TEMPO (<u  style="text-decoration: underline;">data_inizio</u>)<br><br>
+SOCIO (<u  style="text-decoration: underline;">ID</u>, nome, cognome, telefono)<br><br>
+INTERVENTO (<u  style="text-decoration: underline;">MEMBRO_PERSONALE_ID</u>, <u  style="text-decoration: underline;">data_ora</u>, IMPIANTO_ID)<br><br>
+RICAMBI (<u  style="text-decoration: underline;">PRODOTTO_ID</u>, modello)<br><br>
+CONSUMABILE (<u  style="text-decoration: underline;">PRODOTTO_ID</u>, scadenza*)<br><br>
+ABBONAMENTO (<u  style="text-decoration: underline;">IMPIANTO_ID</u>, <u  style="text-decoration: underline;">ID</u>, data_inizio, data_fine, costo, SOCIO_ID)<br><br>
+SESSIONE (<u  style="text-decoration: underline;">SOCIO_ID</u>, <u  style="text-decoration: underline;">data_ora_inizio</u>, data_ora_fine, VIDEO_CORSO_ID)<br><br>
+ELENCO (<u  style="text-decoration: underline;">MEMBRO_PERSONALE_ID</u>, <u  style="text-decoration: underline;">VIDEO_CORSO_ID</u>)<br><br>
+PRODOTTI_USATI (<u  style="text-decoration: underline;">PRODOTTO_ID</u>, <u  style="text-decoration: underline;">INTERVENTO_MEMBRO_PERSONALE_ID</u>, <u  style="text-decoration: underline;">INTERVENTO_data_ora</u>, qty)<br><br>
+LAVORA (<u  style="text-decoration: underline;">IMPIANTO_ID</u>, <u  style="text-decoration: underline;">MEMBRO_PERSONALE_ID</u>, <u  style="text-decoration: underline;">TEMPO_data_inizio</u>, mansione, data_fine)<br><br>
+HAS_SPECIALIZZAZIONI (<u  style="text-decoration: underline;">MEMBRO_PERSONALE_ID</u>, <u  style="text-decoration: underline;">SPECIALIZZAZIONI_specializzazioni</u>)<br><br>
+HAS_CERTIFICAZIONI (<u  style="text-decoration: underline;">CERTIFICAZIONI_certificazioni</u>, <u  style="text-decoration: underline;">RICAMBI_PRODOTTO_ID</u>)<br><br>
+
+<br><h3>Referential integrity constraints</h3>
+
+
+
+
+
+INTERVENTO (MEMBRO_PERSONALE_ID)  REFERENCES MEMBRO_PERSONALE  (ID)<br><br>INTERVENTO (IMPIANTO_ID)  REFERENCES IMPIANTO  (ID)<br><br>
+RICAMBI (PRODOTTO_ID)  REFERENCES PRODOTTO  (ID)<br><br>
+CONSUMABILE (PRODOTTO_ID)  REFERENCES PRODOTTO  (ID)<br><br>
+ABBONAMENTO (IMPIANTO_ID)  REFERENCES IMPIANTO  (ID)<br><br>ABBONAMENTO (SOCIO_ID)  REFERENCES SOCIO  (ID)<br><br>
+SESSIONE (SOCIO_ID)  REFERENCES SOCIO  (ID)<br><br>SESSIONE (VIDEO_CORSO_ID)  REFERENCES VIDEO_CORSO  (ID)<br><br>
+ELENCO (MEMBRO_PERSONALE_ID)  REFERENCES MEMBRO_PERSONALE  (ID)<br><br>ELENCO (VIDEO_CORSO_ID)  REFERENCES VIDEO_CORSO  (ID)<br><br>
+PRODOTTI_USATI (PRODOTTO_ID)  REFERENCES PRODOTTO  (ID)<br><br>PRODOTTI_USATI (INTERVENTO_MEMBRO_PERSONALE_ID, INTERVENTO_data_ora)  REFERENCES INTERVENTO  (MEMBRO_PERSONALE_ID, data_ora)<br><br>
+LAVORA (IMPIANTO_ID)  REFERENCES IMPIANTO  (ID)<br><br>LAVORA (MEMBRO_PERSONALE_ID)  REFERENCES MEMBRO_PERSONALE  (ID)<br><br>LAVORA (TEMPO_data_inizio)  REFERENCES TEMPO  (data_inizio)<br><br>
+HAS_SPECIALIZZAZIONI (MEMBRO_PERSONALE_ID)  REFERENCES MEMBRO_PERSONALE  (ID)<br><br>
+HAS_CERTIFICAZIONI (RICAMBI_PRODOTTO_ID)  REFERENCES RICAMBI  (PRODOTTO_ID)<br><br>
