@@ -37,3 +37,35 @@ HAVING AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) > (SELECT AVG(ESE
                                									  FROM ESECUZIONE, ESAME ES2
                                									  WHERE ES2.Categoria = ES1.Categoria AND ESECUZIONE.CodE = ES2.CodE
                                									  GROUP BY ES2.Categoria)
+
+--- es3
+
+WITH categoria_media(Categoria, media) AS (SELECT esame_tot.Categoria, AVG(esame_tot.tot)
+						 				   FROM (SELECT ESAME.CodE, COUNT(*) AS tot, ESAME.Categoria
+	  						   					 FROM ESECUZIONE, ESAME
+	  						   					 WHERE ESECUZIONE.CodE = ESAME.CodE
+	  						   					 GROUP BY ESAME.CodE, ESAME.Categoria) esame_tot
+										   GROUP BY esame_tot.Categoria),
+
+	esami_sup_media AS (SELECT es.CodE
+						FROM ESECUZIONE, ESAME es
+						WHERE ESECUZIONE.CodE = es.CodE
+						GROUP BY es.CodE, es.Categoria
+						HAVING COUNT(*) > (SELECT categoria_media.media
+                   						   FROM categoria_media
+                   						   WHERE categoria_media.Categoria = es.Categoria)),
+
+	esami_less_then_3 AS (SELECT DISTINCT(ESAME.CodE)
+						  FROM ESAME, ESECUZIONE
+						  WHERE ESECUZIONE.CodE = ESAME.CodE
+						  GROUP BY ESAME.CodE, ESECUZIONE.CodL, ESECUZIONE.DataEsecuzione
+						  HAVING COUNT(*) <= 3), 
+                          
+	valid_esami AS (SELECT *
+				   FROM ESAME
+				   WHERE ESAME.CodE IN (SELECT * FROM esami_sup_media) AND ESAME.CodE IN (SELECT * FROM esami_less_then_3))
+                   
+SELECT MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, valid_esami.NomeEsame, COUNT(*) AS n_volte, COUNT(DISTINCT ESECUZIONE.DataEsecuzione) AS n_date_diverse
+FROM MEDICO, valid_esami, ESECUZIONE
+WHERE ESECUZIONE.CodE = valid_esami.CodE AND ESECUZIONE.CodM = MEDICO.CodM
+GROUP BY MEDICO.CodM, MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, valid_esami.CodE, valid_esami.NomeEsame;
