@@ -69,3 +69,48 @@ SELECT MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, valid_esami.NomeE
 FROM MEDICO, valid_esami, ESECUZIONE
 WHERE ESECUZIONE.CodE = valid_esami.CodE AND ESECUZIONE.CodM = MEDICO.CodM
 GROUP BY MEDICO.CodM, MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, valid_esami.CodE, valid_esami.NomeEsame;
+
+--- es4
+
+CREATE TRIGGER new_recensione
+AFTER INSERT ON RECENSIONE_ RISTORANTE
+FOR EACH ROW
+DECLARE
+N NUMBER, p_avg_rist NUMBER, p_avg_city NUMBER, tot NUMBER, city VARCHAR2
+BEGIN
+
+    SELECT COUNT(*) INTO N
+    FROM RIASSUNTO_RECENSIONI RR
+    WHERE RR.CodR = :NEW.CodR;
+
+    IF (N = 0) THEN
+        INSERT INTO RIASSUNTO_RECENSIONI(CodR, NumeroRecensioni, PunteggioComplessivo) 
+        VALUES (:NEW.CodR, 1, :NEW.Punteggio);
+
+        p_avg_rist := :NEW.Punteggio;
+    ELSE
+        UPDATE RIASSUNTO_RECENSIONI 
+        SET NumeroRecensioni = NumeroRecensioni + 1, PunteggioComplessivo = PunteggioComplessivo + :NEW.Punteggio
+        WHERE RIASSUNTO_RECENSIONI.CodR = :NEW.CodR;
+
+        SELECT RIASSUNTO_RECENSIONI.NumeroRecensioni, RIASSUNTO_RECENSIONI.PunteggioComplessivo INTO N, tot
+        FROM RIASSUNTO_RECENSIONI
+        WHERE RIASSUNTO_RECENSIONI.CodR = :NEW.CodR;
+
+        p_avg_rist := tot / N;
+    END IF;
+
+    SELECT RISTORANTE.Città INTO city
+    FROM RISTORANTE
+    WHERE RISTORANTE.CodR = :NEW.CodR;
+
+    SELECT SUM(RIASSUNTO_RECENSIONI.NumeroRecensioni), SUM(RIASSUNTO_RECENSIONI.PunteggioComplessivo) INTO N, tot
+    FROM RIASSUNTO_RECENSIONI, RISTORANTE
+    WHERE RISTORANTE.Città = city AND RISTORANTE.CodR = RIASSUNTO_RECENSIONI.CodR;
+
+    p_avg_city := tot / N;
+
+    INSERT INTO NOTIFICA(CodR, DataRecensione, PunteggioMedioRistorante, PunteggioMedioCittà)
+    VALUES(:NEW.CodR, :NEW.DataRecensione, p_avg_rist, p_avg_city);
+
+END;
