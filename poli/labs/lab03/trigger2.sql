@@ -1,0 +1,53 @@
+CREATE TRIGGER update_sum
+AFTER INSERT OR UPDATE OF JOB ON IMP
+FOR EACH ROW
+DECLARE
+N NUMBER;
+BEGIN
+
+    IF INSERTING THEN
+
+        SELECT COUNT(*) INTO N
+        FROM SUMMARY
+        WHERE SUMMARY.JOB = :NEW.JOB;
+
+        IF N <> 0 THEN
+            UPDATE SUMMARY
+            SET SUMMARY.NUM = SUMMARY.NUM + 1
+            WHERE SUMMARY.JOB = :NEW.JOB;
+        ELSE
+            INSERT INTO SUMMARY(JOB, NUM)
+            VALUES (:NEW.JOB, 1);
+        END IF;
+
+    ELSIF UPDATING THEN
+        
+        SELECT COUNT(*) INTO N
+        FROM SUMMARY
+        WHERE SUMMARY.JOB = :NEW.JOB;
+
+        IF N <> 0 THEN
+            UPDATE SUMMARY
+            SET SUMMARY.NUM = SUMMARY.NUM + 1
+            WHERE SUMMARY.JOB = :NEW.JOB;
+        ELSE
+            INSERT INTO SUMMARY(JOB, NUM)
+            VALUES (:NEW.JOB, 1);
+        END IF;
+
+        SELECT NUM INTO N
+        FROM SUMMARY
+        WHERE SUMMARY.JOB = :OLD.JOB;
+
+        IF N = 1 THEN
+            DELETE FROM SUMMARY
+            WHERE SUMMARY.JOB = :OLD.JOB;
+        ELSE
+            UPDATE SUMMARY
+            SET SUMMARY.NUM = SUMMARY.NUM - 1
+            WHERE SUMMARY.JOB = :OLD.JOB;
+        END IF;
+
+    END IF;
+
+END;
