@@ -2,14 +2,14 @@
 
 WITH valid_lab AS (SELECT LABORATORIO.CodL, LABORATORIO.NomeL
                    FROM LABORATORIO, ESECUZIONE, ESAME
-                   WHERE ESAME.Categoria = 'Ematologica' AND ESECUZIONE.CodE = ESAME.CodE AND LABORATORIO.CodL = ESECUZIONE.CodL
+                   WHERE ESAME.Categoria = 'Ematologica' AND EXTRACT(YEAR FROM ESECUZIONE.DataEsecuzione) = 2025 AND ESECUZIONE.CodE = ESAME.CodE AND LABORATORIO.CodL = ESECUZIONE.CodL
                    GROUP BY LABORATORIO.CodL, LABORATORIO.NomeL
                    HAVING COUNT(*) > 100 AND COUNT(DISTINCT ESECUZIONE.CodP) > 50)
 
 SELECT valid_lab.NomeL, ESAME.NomeEsame, AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) AS MediaGiorni
 FROM ESECUZIONE, ESAME, valid_lab
 WHERE ESAME.Categoria = 'Ematologica' AND EXTRACT(YEAR FROM ESECUZIONE.DataEsecuzione) = 2025 AND ESECUZIONE.CodE = ESAME.CodE AND ESECUZIONE.CodL = valid_lab.CodL
-GROUP BY valid_lab.CodL, valid_lab.NomeL, ESAME.NomeEsame
+GROUP BY valid_lab.CodL, valid_lab.NomeL, ESAME.NomeEsame;
 
 
 --- es2
@@ -19,17 +19,17 @@ WITH categoria_tempo_medio(Categoria, Media) AS (SELECT ESAME.Categoria, AVG(ESE
                                WHERE ESECUZIONE.CodE = ESAME.CodE
                                GROUP BY ESAME.Categoria)
                                
-SELECT ESAME.NomeEsame, COUNT(*) AS VolteEseguito, AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) AS TempoMedio
+SELECT ESAME.NomeEsame, ESAME.Categoria, COUNT(*) AS VolteEseguito, AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) AS TempoMedio
 FROM ESECUZIONE, ESAME, LABORATORIO
 WHERE LABORATORIO.Città = 'Torino' AND ESECUZIONE.CodE = ESAME.CodE AND ESECUZIONE.CodL = LABORATORIO.CodL
 GROUP BY ESAME.CodE, ESAME.NomeEsame, ESAME.Categoria
 HAVING AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) > (SELECT categoria_tempo_medio.Media
                                                                   FROM categoria_tempo_medio
-                                                                  WHERE categoria_tempo_medio.Categoria = ESAME.Categoria)
+                                                                  WHERE categoria_tempo_medio.Categoria = ESAME.Categoria);
 
 --- oppure
 
-ELECT ES1.NomeEsame, COUNT(*) AS VolteEseguito, AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) AS TempoMedio
+SELECT ES1.NomeEsame, ESAME.Categoria, COUNT(*) AS VolteEseguito, AVG(ESECUZIONE.DataReferto - ESECUZIONE.DataEsecuzione) AS TempoMedio
 FROM ESECUZIONE, ESAME ES1, LABORATORIO
 WHERE LABORATORIO.Città = 'Torino' AND ESECUZIONE.CodE = ES1.CodE AND ESECUZIONE.CodL = LABORATORIO.CodL
 GROUP BY ES1.CodE, ES1.NomeEsame, ES1.Categoria
@@ -59,11 +59,11 @@ WITH categoria_media(Categoria, media) AS (SELECT esame_tot.Categoria, AVG(esame
 						  FROM ESAME, ESECUZIONE
 						  WHERE ESECUZIONE.CodE = ESAME.CodE
 						  GROUP BY ESAME.CodE, ESECUZIONE.CodL, ESECUZIONE.DataEsecuzione
-						  HAVING COUNT(*) <= 3), 
+						  HAVING COUNT(*) > 3), 
                           
 	valid_esami AS (SELECT *
 				   FROM ESAME
-				   WHERE ESAME.CodE IN (SELECT * FROM esami_sup_media) AND ESAME.CodE IN (SELECT * FROM esami_less_then_3))
+				   WHERE ESAME.CodE IN (SELECT * FROM esami_sup_media) AND ESAME.CodE NOT IN (SELECT * FROM esami_less_then_3))
                    
 SELECT MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, valid_esami.NomeEsame, COUNT(*) AS n_volte, COUNT(DISTINCT ESECUZIONE.DataEsecuzione) AS n_date_diverse
 FROM MEDICO, valid_esami, ESECUZIONE
@@ -73,10 +73,10 @@ GROUP BY MEDICO.CodM, MEDICO.NomeM, MEDICO.CognomeM, MEDICO.Specializzazione, va
 --- es4
 
 CREATE TRIGGER new_recensione
-AFTER INSERT ON RECENSIONE_ RISTORANTE
+AFTER INSERT ON RECENSIONE_RISTORANTE
 FOR EACH ROW
 DECLARE
-N NUMBER, p_avg_rist NUMBER, p_avg_city NUMBER, tot NUMBER, city VARCHAR2
+N NUMBER, p_avg_rist NUMBER, p_avg_city NUMBER, tot NUMBER, city VARCHAR2;
 BEGIN
 
     SELECT COUNT(*) INTO N
