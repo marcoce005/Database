@@ -22,3 +22,15 @@ if check_connection():
     query = "SELECT C.Nome, COUNT(*) AS nAgenzie FROM `AGENZIA` A, `CITTA` C WHERE A.Citta_Indirizzo = C.Nome GROUP BY C.Nome ORDER BY nAgenzie DESC LIMIT 1"
     n_agenzie = execute_query(st.session_state["connection"], query)
     cols[2].metric("Città con più Agenzie", n_agenzie.mappings().first()["Nome"])
+
+    # Extract coordinates of agencies
+    query = "SELECT C.Latitudine AS lat, C.Longitudine AS lon FROM AGENZIA A, CITTA C WHERE A.Citta_Indirizzo = C.Nome GROUP BY C.Nome, C.Latitudine, C.Longitudine;"
+    coordinates = pd.DataFrame(
+        [
+            dict(e)
+            for e in execute_query(st.session_state["connection"], query)
+            .mappings()
+            .all()
+        ]
+    )
+    st.map(coordinates, color="#00ffff", zoom=5)
