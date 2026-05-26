@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    env_file:
+    - .env
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./data/hotel.sql:/docker-entrypoint-initdb.d/start.sql
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    container_name: phpmyadmin
+    #platform: linux/amd64
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+    depends_on:
+      - db
+
+volumes:
+  dbdata:

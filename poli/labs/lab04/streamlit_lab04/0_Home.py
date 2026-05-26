@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+from utils.utils import *
 
 st.set_page_config(
     page_title="Lab. 04",
@@ -14,4 +15,10 @@ st.set_page_config(
 )
 
 
-st.title("📈 La mia App")
+st.title("Lab 04")
+st.markdown("Created by Ciro Esposito")
+
+if "connection" not in st.session_state.keys():
+    st.session_state["connection"] = False
+
+check_connection()
