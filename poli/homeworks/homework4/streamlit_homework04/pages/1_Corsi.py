@@ -3,6 +3,15 @@ import pandas as pd
 from utils.utils import *
 
 st.title(":red[Corsi]")
+st.subheader(":red[Esplorazione e filtraggio dei corsi]")
+st.caption(
+    "Questa pagina consente di esplorare e filtrare i corsi disponibili nel database. "
+    "Fornisce una panoramica sintetica tramite metriche sul numero totale di corsi e sui tipi di corso distinti. "
+    "L’utente può applicare filtri multipli (ad esempio per categoria e livello) utilizzando widget popolati dinamicamente dai dati esistenti. "
+    "I risultati vengono aggiornati in tempo reale e includono le informazioni principali sui corsi selezionati. "
+    "In una sezione espandibile sono inoltre disponibili i programmi delle lezioni e i dettagli degli istruttori associati. "
+    "In caso di assenza di risultati, viene mostrato un messaggio di avviso o errore."
+)
 
 cols = st.columns(2)
 

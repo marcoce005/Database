@@ -9,7 +9,7 @@ st.set_page_config(
 
 st.title(":green[Homework 04]")
 
-st.markdown("### Obbiettivo")
+st.markdown("### :green[Obbiettivo]")
 st.markdown(
     "Creare un’applicazione multi-pagina per visualizzare le principali informazioni contenute nel database e permettere all’utente di aggiungerne di nuove."
 )

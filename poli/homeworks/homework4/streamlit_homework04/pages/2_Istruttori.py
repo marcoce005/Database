@@ -4,13 +4,28 @@ from utils.utils import *
 import datetime
 
 st.title(":yellow[Istruttori]")
+st.subheader(":yellow[Esplorazione degli istruttori]")
+st.caption(
+    "Questa pagina permette di visualizzare e filtrare gli istruttori disponibili nel sistema. "
+    "L’utente può effettuare una ricerca per cognome e restringere i risultati "
+    "selezionando un intervallo di date di nascita tramite un date range. "
+    "I risultati vengono mostrati in modo dettagliato, un istruttore alla volta, "
+    "arricchiti da un’icona per ciascun elemento. In caso di assenza di corrispondenze, "
+    "viene visualizzato un messaggio informativo."
+)
 
 if check_connection():
     surname = st.text_input("Cognome").title()
-    range_date = st.date_input("Range data di nascita", (datetime.date(1970, 1, 1), datetime.datetime.now()), max_value=datetime.datetime.now())
+    range_date = st.date_input(
+        "Range data di nascita",
+        (datetime.date(1970, 1, 1), datetime.datetime.now()),
+        max_value=datetime.datetime.now(),
+    )
     query = f"SELECT * FROM Istruttore WHERE Cognome LIKE '{surname}%' AND DataNascita >= '{range_date[0]}' AND DataNascita <= '{range_date[1]}';"
-    selected_instructurs = pd.DataFrame(execute_query(st.session_state["connection"], query))
-    
+    selected_instructurs = pd.DataFrame(
+        execute_query(st.session_state["connection"], query)
+    )
+
     if selected_instructurs.empty:
         st.warning("La ricerca non ha ritornato niente. ")
     else:
